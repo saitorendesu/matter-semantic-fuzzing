@@ -25,3 +25,68 @@ Raspberry Piを用いた実機検証環境において、仕様書に基づい�
 └── images/
     ├── system_diagram.png         # システム構成図
     └── wiring_photo.jpg           # 配線写真
+```
+
+
+## 🛠️ System Requirements
+
+### Tester (Attacker)
+* **Hardware:** MacBook Pro (Apple Silicon M1/M2/M3 Recommended)
+* **Software:**
+    * Python 3.9+
+    * Matter SDK (`chip-tool`) environment
+* **Network:** Ethernet (IPv6) connected to DUT
+
+### DUT (Victim)
+* **Hardware:** Raspberry Pi 4 Model B (4GB RAM+)
+* **OS:** Ubuntu Core 22 (Server)
+* **Application:** Matter Linux Lighting App
+* **Peripherals:**
+    * LED Indicator (GPIO 21 / Pin 40)
+    * Resistor (330Ω)
+
+
+## 🚀 Quick Start
+
+### 1. DUT (Raspberry Pi) Setup
+ラズパイにSSH接続し、異常検知用のLEDサーバとMatterアプリを起動します。
+
+```bash
+# 1. SSH接続
+ssh ubuntu@ubuntu.local
+
+# 2. LEDサーバの起動 (バックグラウンド実行)
+sudo python3 ~/src/gpio_server.py &
+
+# 3. Matter Lighting Appの起動
+cd ~/matter/connectedhomeip
+sudo ./out/lighting-app/chip-lighting-app
+```
+
+### 2. Tester (Mac) Setup & Attack
+Mac側で攻撃スクリプトを実行します。
+
+```bash
+# 1. スクリプトのあるディレクトリへ移動
+cd src
+
+# 2. 攻撃スクリプトの実行
+# (環境に合わせて matter_fuzzer_ultimate.py 内のパス設定を確認してください)
+python3 matter_fuzzer_ultimate.py
+```
+
+
+## 📊 Evaluation
+
+実験結果の詳細は `docs/学校提出用論文.doc` を参照してください。
+本ツールを用いて、**タイミング依存の論理バグ（Timing-dependent Logic Bug）** を検知することに成功しました。
+
+
+## 📜 License
+
+This project is for academic research purposes.
+
+
+## 👥 Author
+
+**Ren Saito** (Matsuzaki Lab, Chuo University)
