@@ -21,7 +21,7 @@ Raspberry Piを用いた実機検証環境において、仕様書に基づい�
 │   └── gpio_server.py             # ラズパイ側で動くLED制御サーバ
 ├── docs/
 │   ├── 学校提出用論文.doc
-│   └── 開発者向け文書.docx        # 詳細なセットアップ手順書
+│   └── 開発者向け文書.docx        # 詳細なセットアップ手順書・完全ガイド
 └── images/
     ├── system_diagram.png         # システム構成図
     └── wiring_photo.jpg           # 配線写真
@@ -48,6 +48,8 @@ Raspberry Piを用いた実機検証環境において、仕様書に基づい�
 
 ## 🚀 Quick Start
 
+> ℹ️ **Note:** 実験の完全なガイド（環境構築の詳細、トラブルシューティング、拡張方法など）については、**`docs/開発者向け文書.docx`** を参照してください。
+
 ### 1. DUT (Raspberry Pi) Setup
 ラズパイにSSH接続し、異常検知用のLEDサーバとMatterアプリを起動します。
 
@@ -64,7 +66,7 @@ sudo ./out/lighting-app/chip-lighting-app
 ```
 
 ### 2. Tester (Mac) Setup & Attack
-Mac側で攻撃スクリプトを実行します。
+Mac側で攻撃スクリプトを実行します。依存ライブラリは標準のみのため、追加インストールは不要です。
 
 ```bash
 # 1. スクリプトのあるディレクトリへ移動
